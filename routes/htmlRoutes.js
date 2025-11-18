@@ -53,6 +53,6 @@ router.get('/protected', auth, (req, res) => {
 });
 
 // Set up API routes
-router.use('/api', require('../api'));
+router.use('/api', require('./apiRoutes'));
 
 module.exports = router;
