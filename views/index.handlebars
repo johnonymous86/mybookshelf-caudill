@@ -1,7 +1,39 @@
-{{header}}
-<main>
-  <h1>This is the home page!</h1>
-  <p>Currently, you are {{#unless isLoggedIn}} NOT {{/unless}} logged in.</p>
-  <p>You should {{#unless isLoggedIn}}NOT{{/unless}} be able to access <a href="/private">this page</a>.</p>
-  <p>Use the header above to {{#if isLoggedIn}} logout{{else}} login or create an account{{/if}}.</p>
+{{> header}}
+<main class="home-page">
+  {{#if isLoggedIn}}
+    <h1>Welcome back to MyBookshelf!</h1>
+    <p>Ready to track your reading journey?</p>
+    <div class="cta-buttons">
+      <a href="/" class="btn btn-primary">View My Bookshelf</a>
+    </div>
+  {{else}}
+    <div class="hero-section">
+      <h1>MyBookshelf</h1>
+      <p class="tagline">Track the books you've read and discover your next great read</p>
+    </div>
+
+    <div class="features">
+      <div class="feature">
+        <h3>Track Your Reading</h3>
+        <p>Keep a record of all the books you've finished</p>
+      </div>
+      <div class="feature">
+        <h3>Reading Goals</h3>
+        <p>Create a "want to read" list for future adventures</p>
+      </div>
+      <div class="feature">
+        <h3>Discover Books</h3>
+        <p>Search millions of books using Open Library's database</p>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Start Your Reading Journey</h2>
+      <p>Create a free account to begin tracking your books</p>
+      <div class="cta-buttons">
+        <a href="/signup" class="btn btn-primary">Create Account</a>
+        <a href="/login" class="btn btn-secondary">Login</a>
+      </div>
+    </div>
+  {{/if}}
 </main>

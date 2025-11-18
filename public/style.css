@@ -32,10 +32,6 @@ main {
   background-color: var(--black);
   padding: var(--space) calc(var(--space) * 3);
   text-align: center;
-}
-
-main,
-main form {
   border-radius: 4px;
 }
 
@@ -52,20 +48,57 @@ h3 {
 a {
   color: var(--secondary-light);
   transition: color 200ms;
+  text-decoration: none;
 }
 a:hover,
 a:focus {
   color: var(--secondary);
 }
 
-button.btn {
-  border: var(--text-color);
+button.btn,
+a.btn {
+  display: inline-block;
+  border: none;
   border-radius: 4px;
-  background-color: var(--secondary-light);
   padding: calc(var(--space) * 0.75) calc(var(--space) * 2);
   cursor: pointer;
-  transition: background-color 200ms;
+  transition: all 200ms;
+  font-size: var(--font-size);
+  text-decoration: none;
+  font-weight: bold;
 }
+
+a.btn-primary,
+button.btn-primary {
+  background-color: var(--secondary-light);
+  color: var(--black);
+}
+
+a.btn-primary:hover,
+a.btn-primary:focus,
+button.btn-primary:hover,
+button.btn-primary:focus {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+a.btn-secondary,
+button.btn-secondary {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 2px solid var(--primary);
+}
+
+a.btn-secondary:hover,
+a.btn-secondary:focus,
+button.btn-secondary:hover,
+button.btn-secondary:focus {
+  background-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 button.btn-text {
   border: none;
   background-color: transparent;
@@ -74,14 +107,11 @@ button.btn-text {
   cursor: pointer;
 }
 
-button.btn:hover,
-button.btn:focus {
-  background-color: var(--secondary);
-}
 button.btn-text:hover,
 button.btn-text:focus {
   color: var(--secondary);
 }
+
 header {
   display: flex;
   flex-wrap: wrap;
@@ -109,6 +139,66 @@ header .site-logo {
   font-weight: bold;
 }
 
+/* Home Page Styles */
+.home-page {
+  padding: calc(var(--space) * 4) calc(var(--space) * 3);
+}
+
+.hero-section {
+  margin-bottom: calc(var(--space) * 4);
+}
+
+.hero-section h1 {
+  font-size: calc(var(--font-size) * 3);
+  margin-bottom: var(--space);
+}
+
+.tagline {
+  font-size: calc(var(--font-size) * 1.25);
+  color: var(--light-grey);
+  margin-bottom: calc(var(--space) * 3);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: calc(var(--space) * 2);
+  margin: calc(var(--space) * 4) 0;
+  text-align: left;
+}
+
+.feature {
+  background-color: var(--dark-grey);
+  padding: calc(var(--space) * 2);
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+}
+
+.feature h3 {
+  margin-top: 0;
+  color: var(--primary);
+}
+
+.feature p {
+  color: var(--light-grey);
+  margin-bottom: 0;
+}
+
+.cta-section {
+  margin-top: calc(var(--space) * 4);
+  padding-top: calc(var(--space) * 3);
+  border-top: 2px solid var(--dark-grey);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: var(--space);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: calc(var(--space) * 2);
+}
+
+/* Login Form Styles */
 .login-form {
   display: flex;
   flex-direction: column;
@@ -123,6 +213,25 @@ header .site-logo {
 .login-form input {
   margin-bottom: calc(var(--space) * 2);
   padding: calc(var(--space) * 0.5) calc(var(--space) * 1);
+  width: 100%;
+  max-width: 300px;
+  font-size: var(--font-size);
+  border-radius: 4px;
+  border: 2px solid var(--dark-grey);
+  background-color: var(--dark-grey);
+  color: var(--text-color);
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.login-form label {
+  align-self: flex-start;
+  margin-left: calc(50% - 150px);
+  margin-bottom: calc(var(--space) * 0.5);
+  font-weight: bold;
 }
 
 @media screen and (max-width: 700px) {
@@ -135,5 +244,22 @@ header .site-logo {
   }
   header a {
     margin: calc(var(--space) / 2);
+  }
+  
+  .hero-section h1 {
+    font-size: calc(var(--font-size) * 2);
+  }
+  
+  .features {
+    grid-template-columns: 1fr;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cta-buttons a.btn {
+    width: 100%;
   }
 }

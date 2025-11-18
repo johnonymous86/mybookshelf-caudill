@@ -1,11 +1,16 @@
 <header>
   <a class="site-logo" href="/">
-    Auth Example! 🕵️
+    MyBookshelf
   </a>
-  {{#if isLoggedIn}}
+  {{
+#if
+ isLoggedIn}}
+    <a href="/">My Books</a>
     <a href="/api/logout">Logout</a>
   {{else}}
     <a href="/login">Login</a>
     <a href="/signup">Sign Up</a>
-  {{/if}}
+  {{
+/if
+}}
 </header>
