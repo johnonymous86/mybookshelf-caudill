@@ -47,7 +47,4 @@ router.get('/protected', auth, (req, res) => {
     res.render('protected');
 });
 
-
-router.use('/api', require('./apiRoutes'));
-
 module.exports = router;
