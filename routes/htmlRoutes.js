@@ -2,11 +2,12 @@ const router = require('express').Router();
 const auth = require('../utils/auth');
 const { Book } = require('../models/Book'); 
 
-//middleware//
+
+
+
 router.use((req, res, next) => {
     res.locals.isLoggedIn = req.session.isLoggedIn || false;
-    
-    res.locals.error = req.query.error;
+     res.locals.error = req.query.error;
     next();
 });
 
@@ -14,15 +15,13 @@ router.use((req, res, next) => {
 router.get('/', async (req, res) => {
     if (req.session.isLoggedIn) {
         try {
-           
-            const MOCK_USER_ID = 1; 
-            const bookshelfData = await Book.fetchUserBookshelf(MOCK_USER_ID);
+            const bookshelfData = await Book.fetchUserBookshelf(req.session.userId);
             
             res.render('bookshelf', {
                 pageTitle: 'My Bookshelf',
                 readBooks: bookshelfData.read,
                 wantToReadBooks: bookshelfData.wantToRead,
-                username: 'testuser', 
+                username: req.session.username,
             });
         } catch (err) {
             console.error('Error loading bookshelf:', err);
@@ -41,7 +40,6 @@ router.get('/login', (req, res) => {
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
-
 
 router.get('/protected', auth, (req, res) => {
     res.render('protected');
