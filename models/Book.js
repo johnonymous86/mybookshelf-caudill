@@ -1,10 +1,8 @@
 const db = require('../config/connection');
 
 class Book {
-    // Fetch all books for a user's bookshelf, separated by status
     static async fetchUserBookshelf(userId) {
         try {
-            // Query for books the user has read
             const [readBooks] = await db.query(`
                 SELECT 
                     b.id,
@@ -19,8 +17,6 @@ class Book {
                 WHERE ub.user_id = ? AND ub.status = 'have_read'
                 ORDER BY ub.date_completed DESC
             `, [userId]);
-
-            // Query for books the user wants to read
             const [wantToReadBooks] = await db.query(`
                 SELECT 
                     b.id,
@@ -46,12 +42,11 @@ class Book {
         }
     }
 
-    // Find or create a book in the books table
     static async findOrCreate(bookData) {
         try {
             const { ol_key, title, author_names, first_publish_year, cover_id } = bookData;
             
-            // Check if book already exists
+            // Check if book exists
             const [existing] = await db.query(
                 'SELECT * FROM books WHERE ol_key = ?',
                 [ol_key]
@@ -61,7 +56,7 @@ class Book {
                 return existing[0];
             }
 
-            // Insert new book
+            // Insert new title
             const [result] = await db.query(
                 'INSERT INTO books (ol_key, title, author_names, first_publish_year, cover_id) VALUES (?, ?, ?, ?, ?)',
                 [ol_key, title, author_names, first_publish_year, cover_id]
@@ -74,7 +69,7 @@ class Book {
         }
     }
 
-    // Add a book to user's bookshelf
+    // Add to bookshelf
     static async addToUserBookshelf(userId, bookId, status) {
         try {
             await db.query(
@@ -88,7 +83,7 @@ class Book {
         }
     }
 
-    // Remove a book from user's bookshelf
+    // Remove from bookshelf
     static async removeFromUserBookshelf(userId, bookId) {
         try {
             await db.query(

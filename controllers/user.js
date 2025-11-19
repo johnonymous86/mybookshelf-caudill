@@ -20,3 +20,21 @@ async function create(req, res) {
 }
 
 module.exports = { create };
+
+
+
+//** 
+// 
+// 
+// 
+// if (username === correctUsername && password === correctPassword) {
+//        // 'then' part: Authentication successful
+//        console.log("SUCCESS: Authentication approved.");
+//        return true;
+//    } else {
+//        // 'else' part: Authentication failed
+//        console.error("FAILURE: Invalid username or password.");
+//        return false;
+//    }
+//}
+

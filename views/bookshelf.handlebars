@@ -1,0 +1,47 @@
+<div class="bookshelf-container">
+  <h1>My Bookshelf</h1>
+  
+  <section class="books-section">
+    <h2>Books I've Read</h2>
+    {{#if readBooks.length}}
+      <div class="books-grid">
+        {{#each readBooks}}
+          <div class="book-card">
+            {{#if this.coverUrl}}
+              <img src="{{this.coverUrl}}" alt="{{this.title}} cover">
+            {{/if}}
+            <h3>{{this.title}}</h3>
+            <p class="author">by {{this.author}}</p>
+            {{#if this.isbn}}
+              <p class="isbn">ISBN: {{this.isbn}}</p>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <p>You haven't added any books you've read yet.</p>
+    {{/if}}
+  </section>
+
+  <section class="books-section">
+    <h2>Books I Want to Read</h2>
+    {{#if wantToReadBooks.length}}
+      <div class="books-grid">
+        {{#each wantToReadBooks}}
+          <div class="book-card">
+            {{#if this.coverUrl}}
+              <img src="{{this.coverUrl}}" alt="{{this.title}} cover">
+            {{/if}}
+            <h3>{{this.title}}</h3>
+            <p class="author">by {{this.author}}</p>
+            {{#if this.isbn}}
+              <p class="isbn">ISBN: {{this.isbn}}</p>
+            {{/if}}
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+      <p>You haven't added any books to your want-to-read list yet.</p>
+    {{/if}}
+  </section>
+</div>
